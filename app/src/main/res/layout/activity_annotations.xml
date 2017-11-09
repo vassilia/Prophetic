@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context="com.example.android.personalstatusmonitor.Annotations"
+    xmlns:tools="http://schemas.android.com/tools">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <TextView
+        android:id="@+id/title_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/bluetooth_connection"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/text_30"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/turn_off_bt"
+        android:layout_width="@dimen/fake_dim_120"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/title_main"
+        android:text="@string/turn_off"
+        android:onClick="off"
+        android:layout_margin="@dimen/dim_6"
+        android:background="@drawable/button_shape"
+        android:textSize="@dimen/text_30"
+        android:textColor="@color/colorPrimaryDark"/>
+
+    <Button
+        android:id="@+id/turn_on_bt"
+        android:layout_width="@dimen/fake_dim_120"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/title_main"
+        android:onClick="on"
+        android:layout_margin="@dimen/dim_6"
+        android:background="@drawable/button_shape"
+        android:text="@string/turn_on"
+        android:textSize="@dimen/text_30"
+        android:textColor="@color/colorPrimaryDark"/>
+
+    <TextView
+        android:id="@+id/annotations"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/turn_on_bt"
+        android:gravity="center_horizontal"
+        android:text="@string/annotations"
+        android:textSize="@dimen/text_30"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/dim_20"
+        android:textColor="@color/colorAccent" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/motor_function"
+        android:textSize="@dimen/text_30"
+        android:layout_margin="@dimen/dim_5"
+        android:layout_below="@id/annotations"
+        android:text="@string/motor_function"
+        android:textColor="@color/colorPrimaryDark"
+        android:background="@drawable/button_shape"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_30"
+        android:layout_below="@id/motor_function"
+        android:textColor="@color/colorPrimaryDark"
+        android:id="@+id/motor_fluctuation"
+        android:layout_margin="@dimen/dim_5"
+        android:background="@drawable/button_shape"
+        android:text="@string/motor_fluctuation"/>
+    <Button
+        android:layout_width="match_parent"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_30"
+        android:layout_below="@id/motor_fluctuation"
+        android:background="@drawable/button_shape"
+        android:id="@+id/dyskinesia"
+        android:layout_margin="@dimen/dim_5"
+        android:text="@string/dyskinesia"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dim_5"
+        android:layout_below="@id/dyskinesia"
+        android:textColor="@color/colorPrimaryDark"
+        android:background="@drawable/button_shape"
+        android:textSize="@dimen/text_30"
+        android:text="@string/freeze_of_gait"/>
+
+</RelativeLayout>
+</ScrollView>
