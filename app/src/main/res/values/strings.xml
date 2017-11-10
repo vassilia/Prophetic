@@ -18,11 +18,12 @@
     <string name="turn_on">turn on</string>
     <string name="list_devices">list devices</string>
     <string name="get_visible">get visible</string>
-    <string name="connect">connect</string>
+    <string name="connect">Connect</string>
     <string name="annotations">Annotations</string>
     <string name="motor_function">Motor Function</string>
     <string name="motor_fluctuation">Motor Fluctuation</string>
     <string name="dyskinesia">Dyskinesia</string>
     <string name="freeze_of_gait">Freeze of Gait</string>
     <string name="user_login_register">user login / register</string>
+    <string name="prophetic">Prophetic</string>
 </resources>

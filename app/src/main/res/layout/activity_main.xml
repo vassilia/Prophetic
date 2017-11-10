@@ -1,94 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
 
-<LinearLayout
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/bg"
     tools:context="com.example.android.personalstatusmonitor.MainActivity">
-
 
     <TextView
         android:id="@+id/title_main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dim_40"
         android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/dim_4"
+        android:background="@color/colorPrimaryLight"
+        android:gravity="center"
         android:text="@string/bluetooth_connection"
-        android:textColor="@color/colorAccent"
-        android:textSize="@dimen/text_30"
-        android:layout_margin="@dimen/dim_10"
-        android:textStyle="bold"
-        android:gravity="center_horizontal"/>
-      <Button
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="@string/turn_on"
-          android:id="@+id/turn_on_bt"
-          android:background="@drawable/button_shape"
-          android:onClick="on"
-          android:textSize="@dimen/text_30"
-          android:layout_margin="@dimen/dim_5"
-          android:textColor="@color/colorPrimaryDark" />
-    <Button
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_20" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/turn_off"
-        android:layout_margin="@dimen/dim_5"
-        android:id="@+id/turn_off_bt"
-        android:background="@drawable/button_shape"
-        android:onClick="off"
-        android:textSize="@dimen/text_30"
-        android:textColor="@color/colorPrimaryDark" />
-    <Button
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/turn_on_bt"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dim_80"
+            android:layout_margin="@dimen/dim_4"
+            android:layout_weight="1"
+            android:background="#ffa500"
+            android:onClick="on"
+            android:text="@string/turn_on"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_20" />
+
+        <Button
+            android:id="@+id/turn_off_bt"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dim_80"
+            android:layout_margin="@dimen/dim_4"
+            android:layout_weight="1"
+            android:background="#a500ff"
+            android:onClick="off"
+            android:text="@string/turn_off"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_20" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/get_visible"
-        android:layout_margin="@dimen/dim_5"
+        android:orientation="horizontal">
+
+
+        <Button
         android:id="@+id/get_visible"
-        android:background="@drawable/button_shape"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dim_80"
+            android:layout_margin="@dimen/dim_4"
+            android:layout_weight="1"
+            android:background="#ffb732"
         android:onClick="visible"
-        android:textSize="@dimen/text_30"
-        android:textColor="@color/colorPrimaryDark" />
+            android:text="@string/get_visible"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_20" />
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/list_devices"
         android:id="@+id/list_devices"
-        android:background="@drawable/button_shape"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dim_80"
+        android:layout_margin="@dimen/dim_4"
+        android:layout_weight="1"
+        android:background="#c04cff"
         android:onClick="list"
-        android:layout_margin="@dimen/dim_5"
-        android:textSize="@dimen/text_30"
-        android:textColor="@color/colorPrimaryDark" />
+        android:text="@string/list_devices"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_20" />
+    </LinearLayout>
     <TextView
         android:id="@+id/paired_devices_text"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dim_40"
+        android:layout_marginTop="@dimen/dim_4"
+        android:background="@color/colorPrimaryLight"
         android:gravity="center"
-        android:layout_marginTop="@dimen/dim_10"
         android:text="Paired Devices"
-        android:textSize="@dimen/text_30"
-        android:textStyle="bold"
-        android:textColor="@color/colorAccent" />
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_20" />
     <ListView
         android:id="@+id/pairedDevicesListView"
         android:layout_width="wrap_content"
         android:layout_height="200sp"/>
 
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dim_60"
-        android:layout_centerHorizontal="true"
-        android:text="@string/connect"
-        android:textSize="@dimen/text_30"
         android:id="@+id/connect_bt"
-        android:textColor="@color/colorPrimaryDark"
-        android:background="@drawable/button_shape"/>
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dim_40"
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorPrimaryLight"
+        android:text="@string/connect"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_20" />
 
 </LinearLayout>
 
-    </ScrollView>

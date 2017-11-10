@@ -1,103 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/bg"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    tools:context="com.example.android.personalstatusmonitor.Annotations"
-    xmlns:tools="http://schemas.android.com/tools">
 
-<RelativeLayout
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:orientation="vertical"
+    tools:context="com.example.android.personalstatusmonitor.Annotations">
 
     <TextView
         android:id="@+id/title_main"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dim_40"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/dim_4"
+        android:background="@color/colorPrimaryLight"
+        android:gravity="center"
         android:text="@string/bluetooth_connection"
-        android:textColor="@color/colorAccent"
-        android:textSize="@dimen/text_30"
-        android:textStyle="bold" />
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_20" />
 
-    <Button
-        android:id="@+id/turn_off_bt"
-        android:layout_width="@dimen/fake_dim_120"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/title_main"
-        android:text="@string/turn_off"
-        android:onClick="off"
-        android:layout_margin="@dimen/dim_6"
-        android:background="@drawable/button_shape"
-        android:textSize="@dimen/text_30"
-        android:textColor="@color/colorPrimaryDark"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
     <Button
         android:id="@+id/turn_on_bt"
-        android:layout_width="@dimen/fake_dim_120"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@id/title_main"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dim_80"
+        android:layout_margin="@dimen/dim_4"
+        android:layout_weight="1"
+        android:background="#ffa500"
         android:onClick="on"
-        android:layout_margin="@dimen/dim_6"
-        android:background="@drawable/button_shape"
         android:text="@string/turn_on"
-        android:textSize="@dimen/text_30"
-        android:textColor="@color/colorPrimaryDark"/>
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_20" />
+
+        <Button
+            android:id="@+id/turn_off_bt"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dim_80"
+            android:layout_margin="@dimen/dim_4"
+            android:layout_weight="1"
+            android:background="#a500ff"
+            android:onClick="off"
+            android:text="@string/turn_off"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_20" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/annotations"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/turn_on_bt"
-        android:gravity="center_horizontal"
+        android:layout_height="@dimen/dim_40"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/dim_4"
+        android:layout_marginTop="@dimen/dim_4"
+        android:background="@color/colorPrimaryLight"
+        android:gravity="center"
         android:text="@string/annotations"
-        android:textSize="@dimen/text_30"
-        android:textStyle="bold"
-        android:layout_marginTop="@dimen/dim_20"
-        android:textColor="@color/colorAccent" />
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_20" />
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/motor_function"
-        android:textSize="@dimen/text_30"
-        android:layout_margin="@dimen/dim_5"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dim_70"
         android:layout_below="@id/annotations"
+        android:layout_margin="@dimen/dim_4"
+        android:background="#69355f"
+        android:drawableLeft="@drawable/ic_settings_white_24dp"
+        android:paddingLeft="@dimen/dim_10"
         android:text="@string/motor_function"
-        android:textColor="@color/colorPrimaryDark"
-        android:background="@drawable/button_shape"/>
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_20" />
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/text_30"
-        android:layout_below="@id/motor_function"
-        android:textColor="@color/colorPrimaryDark"
         android:id="@+id/motor_fluctuation"
-        android:layout_margin="@dimen/dim_5"
-        android:background="@drawable/button_shape"
-        android:text="@string/motor_fluctuation"/>
-    <Button
         android:layout_width="match_parent"
-        android:textColor="@color/colorPrimaryDark"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/text_30"
-        android:layout_below="@id/motor_fluctuation"
-        android:background="@drawable/button_shape"
+        android:layout_height="@dimen/dim_70"
+        android:layout_below="@id/motor_function"
+        android:layout_margin="@dimen/dim_4"
+        android:background="#783c6c"
+        android:drawableLeft="@drawable/ic_timeline_white_24dp"
+        android:paddingLeft="@dimen/dim_10"
+        android:text="@string/motor_fluctuation"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_20" />
+    <Button
         android:id="@+id/dyskinesia"
-        android:layout_margin="@dimen/dim_5"
-        android:text="@string/dyskinesia"/>
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dim_70"
+        android:layout_below="@id/motor_fluctuation"
+        android:layout_margin="@dimen/dim_4"
+        android:background="#87447a"
+        android:drawableLeft="@drawable/ic_accessibility_white_24dp"
+        android:paddingLeft="@dimen/dim_10"
+        android:text="@string/dyskinesia"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_20" />
     <Button
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dim_5"
+        android:layout_height="@dimen/dim_70"
         android:layout_below="@id/dyskinesia"
-        android:textColor="@color/colorPrimaryDark"
-        android:background="@drawable/button_shape"
-        android:textSize="@dimen/text_30"
-        android:text="@string/freeze_of_gait"/>
+        android:layout_margin="@dimen/dim_4"
+        android:background="#964c88"
+        android:drawableLeft="@drawable/ic_directions_walk_white_24dp"
+        android:paddingLeft="@dimen/dim_10"
+        android:text="@string/freeze_of_gait"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_20" />
 
-</RelativeLayout>
-</ScrollView>
+</LinearLayout>
