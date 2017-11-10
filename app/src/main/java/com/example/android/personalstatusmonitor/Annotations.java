@@ -4,8 +4,12 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -31,15 +35,15 @@ public class Annotations extends AppCompatActivity {
     Button turnOnButton, turnOffButton;
     BluetoothAdapter BA;
     ListView lv;
-    private Set<BluetoothDevice> pairedDevices;
     Logger log;
-
+    private Set<BluetoothDevice> pairedDevices;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_annotations);
 
+        // turnOnButton.onTouchEvent(MotionEvent me);
 
         log = Logger.getLogger(this.getClass().getName());
 
@@ -98,6 +102,8 @@ public class Annotations extends AppCompatActivity {
 
     }
     public void on(View v) {
+        onClick(v);
+
         if (!BA.isEnabled()) {
             Intent turnOn = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(turnOn, 0);
@@ -107,8 +113,56 @@ public class Annotations extends AppCompatActivity {
         }
     }
 
+    public boolean onTouch(View view, MotionEvent theMotion) {
+        switch (theMotion.getAction()
+                ) {
+            case MotionEvent.ACTION_DOWN:
+                break;
+            case MotionEvent.ACTION_UP:
+                break;
+        }
+        return true;
+    }
+
     public void off(View v) {
         BA.disable();
         Toast.makeText(getApplicationContext(), "Turned off", Toast.LENGTH_LONG).show();
     }
+
+    public void onClick(View v) {
+
+        Drawable dr = getResources().getDrawable(R.drawable.button_pressed);
+        dr.setColorFilter(Color.parseColor("#FF0000"), PorterDuff.Mode.SRC_ATOP);
+
+        switch (v.getId()) {
+            case R.id.turn_on_bt:
+
+                if (turnOnButton == null) {
+                    turnOnButton = (Button) findViewById(v.getId());
+                } else {
+                    turnOnButton.setBackgroundResource(R.drawable.button_pressed);
+                    turnOnButton = (Button) findViewById(v.getId());
+                }
+                turnOnButton.setBackgroundDrawable(dr);
+
+                break;
+
+//            case R.id.btn2:
+//                if (button == null) {
+//                    button = (Button) findViewById(v.getId());
+//                } else {
+//                    button.setBackgroundResource(R.drawable.button_pressed);
+//                    button = (Button) findViewById(v.getId());
+//                }
+//                button.setBackgroundDrawable(dr);
+//
+//                break;
+
+            default:
+                break;
+        }
+    }
+
+
+
 }
