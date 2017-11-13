@@ -7,4 +7,14 @@
     <color name="text">#007A93</color>
     <color name="turn_on">#00B200</color>
     <color name="turn_off">#B20000</color>
+    <color name="normal_button">#808686</color>
+    <color name="motor_fuction">#69355f</color>
+    <color name="motor_fuction_accent">#aa569a</color>
+    <color name="motor_fluctuation">#783c6c</color>
+    <color name="motor_fluctuation_accent">#ab579a</color>
+    <color name="dyskinesia">#87447a</color>
+    <color name="dyskinesia_accent">#ac5a9c</color>
+    <color name="freeze_of_gait">#964c88</color>
+    <color name="freeze_of_gait_accent">#ad5d9e</color>
+    <color name="orange_color">#ffb732</color>
 </resources>

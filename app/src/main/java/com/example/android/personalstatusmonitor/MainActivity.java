@@ -29,6 +29,7 @@ import java.util.Set;
 import java.util.logging.Logger;
 
 public class MainActivity extends AppCompatActivity {
+    private final static char[] hexArray = "0123456789ABCDEF".toCharArray();
     TextView myLabel;
     BluetoothSocket mmSocket;
     BluetoothDevice mmDevice;
@@ -40,14 +41,21 @@ public class MainActivity extends AppCompatActivity {
     Button turnOnButton, getVisibleButton, listDeviceButton, turnOffButton, openButton, sendButton, closeButton;
     BluetoothAdapter BA;
     ListView lv;
-    private Set<BluetoothDevice> pairedDevices;
     Logger log;
-
-
-
+    boolean btStatus = false;
+    private Set<BluetoothDevice> pairedDevices;
     //go to annotations activity
     private Button mBtLaunchAnnotActivity;
 
+    public static String bytesToHex(byte[] bytes) {
+        char[] hexChars = new char[bytes.length * 2];
+        for (int j = 0; j < bytes.length; j++) {
+            int v = bytes[j] & 0xFF;
+            hexChars[j * 2] = hexArray[v >>> 4];
+            hexChars[j * 2 + 1] = hexArray[v & 0x0F];
+        }
+        return new String(hexChars);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,8 +82,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 launchAnnotActivity();
             }});    }
+
     private void launchAnnotActivity(){
         Intent intent = new Intent(this, Annotations.class);
+        intent.putExtra("btStatus", btStatus);
         startActivity(intent);}
 
     void findBT() {
@@ -99,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
         }
         myLabel.setText("Bluetooth Device Found");
     }
+
     void openBT() throws IOException {
         if (mmSocket != null && mmSocket.isConnected()) {
             myLabel.setText("Bluetooth connection already open");
@@ -121,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
     void beginListenForData() {
         final Handler handler = new Handler();
 
@@ -202,6 +214,7 @@ public class MainActivity extends AppCompatActivity {
 
         workerThread.start();
     }
+
     void sendData() throws IOException {
         myLabel.setText("Data Sent");
     }
@@ -214,19 +227,29 @@ public class MainActivity extends AppCompatActivity {
             myLabel.setText("Bluetooth Closed");
         }
     }
+
     public void on(View v) {
         if (!BA.isEnabled()) {
             Intent turnOn = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(turnOn, 0);
             Toast.makeText(getApplicationContext(), "Turned on", Toast.LENGTH_LONG).show();
+            turnOnButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_on_pressed));
+            turnOffButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_notpressed));
+            btStatus = true;
         } else {
             Toast.makeText(getApplicationContext(), "Already on", Toast.LENGTH_LONG).show();
+            btStatus = true;
+            turnOnButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_on_pressed));
+            turnOffButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_notpressed));
         }
     }
 
     public void off(View v) {
         BA.disable();
         Toast.makeText(getApplicationContext(), "Turned off", Toast.LENGTH_LONG).show();
+        btStatus = false;
+        turnOnButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_notpressed));
+        turnOffButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_off_pressed));
     }
 
     public void visible(View v) {
@@ -234,6 +257,7 @@ public class MainActivity extends AppCompatActivity {
                 = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
         startActivityForResult(getVisible, 0);
     }
+
     public void list(View v) {
         pairedDevices = BA.getBondedDevices();
 
@@ -245,18 +269,6 @@ public class MainActivity extends AppCompatActivity {
         final ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list);
 
         lv.setAdapter(adapter);
-    }
-
-    private final static char[] hexArray = "0123456789ABCDEF".toCharArray();
-
-    public static String bytesToHex(byte[] bytes) {
-        char[] hexChars = new char[bytes.length * 2];
-        for (int j = 0; j < bytes.length; j++) {
-            int v = bytes[j] & 0xFF;
-            hexChars[j * 2] = hexArray[v >>> 4];
-            hexChars[j * 2 + 1] = hexArray[v & 0x0F];
-        }
-        return new String(hexChars);
     }
 
 

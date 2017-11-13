@@ -1,5 +1,6 @@
 package com.example.android.personalstatusmonitor;
 
+import android.app.ActionBar;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
@@ -28,11 +29,11 @@ public class Annotations extends AppCompatActivity {
     BluetoothSocket mmSocket;
     BluetoothDevice mmDevice;
     InputStream mmInputStream;
-//    Thread workerThread;
+    //    Thread workerThread;
 //    byte[] readBuffer;
 //    int readBufferPosition;
 //    volatile boolean stopWorker;
-    Button turnOnButton, turnOffButton;
+    Button turnOnButton, turnOffButton, motorFunctionButton, motorFluctuationButton, dyskinesiaButton, freezeOfGaitButton;
     BluetoothAdapter BA;
     ListView lv;
     Logger log;
@@ -56,8 +57,18 @@ public class Annotations extends AppCompatActivity {
 
         BA = BluetoothAdapter.getDefaultAdapter();
         lv = (ListView) findViewById(R.id.pairedDevicesListView);
-
+        motorFunctionButton = (Button) findViewById(R.id.motor_function);
+        motorFluctuationButton = (Button) findViewById(R.id.motor_fluctuation);
+        dyskinesiaButton = (Button) findViewById(R.id.dyskinesia);
+        freezeOfGaitButton = (Button) findViewById(R.id.freeze_of_gait);
+        boolean btStatus = getIntent().getBooleanExtra("btStatus", false);
+        if (btStatus) {
+            turnOnButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_on_pressed));
+        } else {
+            turnOffButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_off_pressed));
+        }
     }
+
     void findBT() {
         if (BA == null) {
             myLabel.setText("No bluetooth adapter available");
@@ -79,6 +90,7 @@ public class Annotations extends AppCompatActivity {
         }
         myLabel.setText("Bluetooth Device Found");
     }
+
     void openBT() throws IOException {
         if (mmSocket != null && mmSocket.isConnected()) {
             myLabel.setText("Bluetooth connection already open");
@@ -101,68 +113,50 @@ public class Annotations extends AppCompatActivity {
         }
 
     }
+
     public void on(View v) {
-        onClick(v);
 
         if (!BA.isEnabled()) {
             Intent turnOn = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(turnOn, 0);
-            Toast.makeText(getApplicationContext(), "Turned on", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Turned on", Toast.LENGTH_SHORT).show();
+            turnOnButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_on_pressed));
+            turnOffButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_notpressed));
         } else {
-            Toast.makeText(getApplicationContext(), "Already on", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Already on", Toast.LENGTH_SHORT).show();
+            turnOnButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_on_pressed));
+            turnOffButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_notpressed));
         }
     }
 
-    public boolean onTouch(View view, MotionEvent theMotion) {
-        switch (theMotion.getAction()
-                ) {
-            case MotionEvent.ACTION_DOWN:
-                break;
-            case MotionEvent.ACTION_UP:
-                break;
-        }
-        return true;
-    }
 
     public void off(View v) {
         BA.disable();
-        Toast.makeText(getApplicationContext(), "Turned off", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Turned off", Toast.LENGTH_SHORT).show();
+        turnOnButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_notpressed));
+        turnOffButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_off_pressed));
     }
 
-    public void onClick(View v) {
-
-        Drawable dr = getResources().getDrawable(R.drawable.button_pressed);
-        dr.setColorFilter(Color.parseColor("#FF0000"), PorterDuff.Mode.SRC_ATOP);
-
-        switch (v.getId()) {
-            case R.id.turn_on_bt:
-
-                if (turnOnButton == null) {
-                    turnOnButton = (Button) findViewById(v.getId());
-                } else {
-                    turnOnButton.setBackgroundResource(R.drawable.button_pressed);
-                    turnOnButton = (Button) findViewById(v.getId());
-                }
-                turnOnButton.setBackgroundDrawable(dr);
-
-                break;
-
-//            case R.id.btn2:
-//                if (button == null) {
-//                    button = (Button) findViewById(v.getId());
-//                } else {
-//                    button.setBackgroundResource(R.drawable.button_pressed);
-//                    button = (Button) findViewById(v.getId());
-//                }
-//                button.setBackgroundDrawable(dr);
-//
-//                break;
-
-            default:
-                break;
-        }
+    public void motorFunction(View v) {
+        Toast.makeText(getApplicationContext(), "Motor Function annotated", Toast.LENGTH_SHORT).show();
     }
 
+    public void motorFluctuation(View v) {
+        Toast.makeText(getApplicationContext(), "Motor Fluctuation annotated", Toast.LENGTH_SHORT).show();
+
+
+    }
+
+    public void dyskinesia(View v) {
+        Toast.makeText(getApplicationContext(), "Dyskinesia annotated", Toast.LENGTH_SHORT).show();
+
+
+    }
+
+    public void freezeOfGait(View v) {
+        Toast.makeText(getApplicationContext(), "Freeze Of Gait annotated", Toast.LENGTH_SHORT).show();
+
+    }
 
 
 }

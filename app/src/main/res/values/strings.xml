@@ -26,4 +26,6 @@
     <string name="freeze_of_gait">Freeze of Gait</string>
     <string name="user_login_register">user login / register</string>
     <string name="prophetic">Prophetic</string>
+    <string name="on">ON</string>
+    <string name="off">OFF</string>
 </resources>
